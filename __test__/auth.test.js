@@ -5,9 +5,13 @@ process.env.SECRET = "abcdefghijklmnopqrstuvwxyz";
 const supertest = require("supertest");
 const { app } = require("../src/server");
 const mockReq = supertest(app);
+const faker=require('faker');
+
+afterAll(() => setTimeout(() => process.exit(), 0));
+
 
 const newUser = {
-  username: "test2244332",
+  username: faker.name.findName(),
   password: "test244422",
   Email: "test@114411",
   role: "admin",
