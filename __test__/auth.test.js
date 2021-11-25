@@ -14,6 +14,7 @@ const newUser = {
   password: "test25544422",
   Email: "test@1144511",
   role: "admin",
+
 };
 
 beforeAll((done) => {

@@ -1,5 +1,6 @@
 "use strict";
 
+
 require("dotenv").config();
 process.env.SECRET = "abcdefghijklmnopqrstuvwxyz";
 const supertest = require("supertest");
@@ -18,6 +19,7 @@ afterAll((done) => {
   done();
 });
 
+
 describe("admin", () => {
   let token;
   let id;
@@ -31,6 +33,7 @@ describe("admin", () => {
 
   it("sign in", async () => {
     const res = await mock.post("/signin").auth(fakerName, "dddddd");
+
     token = res.body.token;
     expect(res.status).toEqual(200);
     expect(res.body.user.role).toEqual("admin");
@@ -68,6 +71,7 @@ describe("admin", () => {
     // expect(res.body.type).toEqual("VEGETABLE");
     expect(res.body._id).toEqual(id);
   });
+
 
   xit("DELETE", async () => {
     const res = await mock
