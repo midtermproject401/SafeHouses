@@ -7,28 +7,26 @@ const { app } = require("../src/server");
 const mockReq = supertest(app);
 
 const newUser = {
-  username: "test22332",
-  password: "test222",
-  Email: "test@1111",
+  username: "test2244332",
+  password: "test244422",
+  Email: "test@114411",
   role: "admin",
 };
 describe("sign-up sign-in", () => {
-  Object.keys(users).forEach((user) => {
-    it("sign up", async () => {
-      const res = await mockReq.post("/signup").send(newUser);
-      expect(res.status).toEqual(201);
-      expect(res.body.token).toBeDefined();
-      expect(res.body.user.username).toEqual(newUser.username);
-    });
+  it("sign up", async () => {
+    const res = await mockReq.post("/signup").send(newUser);
+    expect(res.status).toEqual(201);
+    expect(res.body.token).toBeDefined();
+    expect(res.body.user.username).toEqual(newUser.username);
+  });
 
-    it("sign in", async () => {
-      const res = await mockReq
-        .post("/signin")
-        .auth(newUser.username, newUser.password);
-      expect(res.status).toEqual(200);
-      expect(res.body.token).toBeDefined();
-      expect(res.body.user.username).toEqual(newUser.username);
-    });
+  it("sign in", async () => {
+    const res = await mockReq
+      .post("/signin")
+      .auth(newUser.username, newUser.password);
+    expect(res.status).toEqual(200);
+    expect(res.body.token).toBeDefined();
+    expect(res.body.user.username).toEqual(newUser.username);
   });
 });
 
