@@ -14,7 +14,7 @@ const newUser = {
   username: faker.name.findName(),
   password: "test244422",
   Email: "test@114411",
-  role: "admin",
+  role: "admin"
 };
 describe("sign-up sign-in", () => {
   it("sign up", async () => {
