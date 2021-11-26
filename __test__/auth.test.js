@@ -5,13 +5,25 @@ process.env.SECRET = "abcdefghijklmnopqrstuvwxyz";
 const supertest = require("supertest");
 const { app } = require("../src/server");
 const mockReq = supertest(app);
+const faker = require("faker");
+const { db } = require("../src/models/index");
 
 const newUser = {
-  username: "test2244332",
-  password: "test244422",
-  Email: "test@114411",
+  username: faker.name.findName(),
+  password: faker.name.findName(),
+  Email: faker.name.findName(),
   role: "admin",
+
 };
+
+beforeAll(async () => {
+  await db.sync();
+});
+
+afterAll(async () => {
+  await db.drop();
+});
+
 describe("sign-up sign-in", () => {
   it("sign up", async () => {
     const res = await mockReq.post("/signup").send(newUser);
@@ -44,3 +56,31 @@ describe("/users", () => {
     expect(res.status).toEqual(200);
   });
 });
+
+// describe("admin", () => {
+//   let token;
+//   let id;
+
+//   it("GET all", async () => {
+//     const res1 = await mockReq
+//       .post("/signin")
+//       .auth(newUser.username, newUser.password);
+//     token = res1.body.token;
+//     const res2 = await mockReq
+//       .post("/api/v1/house")
+//       .send({
+//         location: "amman000",
+//         Description: "ffffffffff000f",
+//         price: "ffffff000fff",
+//         ownerName: "aaaaaaaaaa",
+//         phoneNumber: "n000nnnnnn",
+//       })
+//       .set({ Authorization: `Bearer ${token}` });
+//     const res = await mockReq.get("/api/v1/house");
+//     expect(res.status).toEqual(200);
+//     // expect(res.body[1]._id).toBeDefined();
+//     // expect(res.body[1].name).toEqual("Mansaf");
+//     // expect(res.body[1].type).toEqual("PROTIEN");
+//     // expect(res.body.length).toEqual(2);
+//   });
+// });
