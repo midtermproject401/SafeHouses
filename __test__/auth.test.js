@@ -6,24 +6,22 @@ const supertest = require("supertest");
 const { app } = require("../src/server");
 const mockReq = supertest(app);
 const faker = require("faker");
-const fakerName = faker.name.findName();
 const { db } = require("../src/models/index");
 
 const newUser = {
-  username: fakerName,
-  password: "test25544422",
-  Email: "test@1144511",
+  username: faker.name.findName(),
+  password: faker.name.findName(),
+  Email: faker.name.findName(),
   role: "admin",
 
 };
 
-beforeAll((done) => {
-  done();
+beforeAll(async () => {
+  await db.sync();
 });
 
-afterAll((done) => {
-  db.close();
-  done();
+afterAll(async () => {
+  await db.drop();
 });
 
 describe("sign-up sign-in", () => {
