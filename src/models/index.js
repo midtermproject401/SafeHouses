@@ -7,7 +7,8 @@ const Collection = require("../models/data-collection");
 
 const { Sequelize, DataTypes } = require("sequelize");
 
-const DATABASE_URL = "postgres://localhost:5432/midProject2";
+const DATABASE_URL =
+  process.env.NODE_ENV === "test" ? "sqlite:memory:" : process.env.DATABASE_URL;
 
 let sequelizeOptions =
   process.env.NODE_ENV === "production"
