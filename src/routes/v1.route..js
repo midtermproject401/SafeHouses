@@ -82,12 +82,16 @@ async function handleUpdateOwner(req, res) {
   const id = req.params.id;
   const obj = req.body;
   let reqOwnerName = req.params.ownerName;
+  let theRecord = await req.model.get(id);
 
-  if (reqOwnerName === req.user.dataValues.username) {
+  if (
+    reqOwnerName === req.user.dataValues.username &&
+    req.user.dataValues.username === theRecord.ownerName
+  ) {
     let updatedRecord = await req.model.update(id, obj);
     res.status(200).json(updatedRecord);
   } else {
-    res.status(500).json("You can only delete your ads");
+    res.status(500).json("You can only update your ads");
   }
 }
 
@@ -95,7 +99,12 @@ async function handleDeleteOwner(req, res) {
   let id = req.params.id;
   let reqOwnerName = req.params.ownerName;
 
-  if (reqOwnerName === req.user.dataValues.username) {
+  let theRecord = await req.model.get(id);
+
+  if (
+    reqOwnerName === req.user.dataValues.username &&
+    req.user.dataValues.username === theRecord.ownerName
+  ) {
     let deletedRecord = await req.model.delete(id, reqOwnerName);
     res.status(200).json(`${reqOwnerName} ads id: ${id} deleted successfully `);
   } else {

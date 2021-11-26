@@ -5,8 +5,8 @@ const profile = (sequelize, DataTypes) =>
     FirstName: { type: DataTypes.STRING, allowNull: false },
     LastName: { type: DataTypes.STRING, allowNull: false },
     Email: { type: DataTypes.STRING, allowNull: false },
-    age: { type: DataTypes.INTEGER },
-    phoneNumber: { type: DataTypes.INTEGER },
+    age: { type: DataTypes.STRING },
+    phoneNumber: { type: DataTypes.STRING },
   });
 
 module.exports = profile;
