@@ -13,6 +13,7 @@ const newUser = {
   password: faker.name.findName(),
   Email: faker.name.findName(),
   role: "admin",
+
 };
 
 beforeAll(async () => {
