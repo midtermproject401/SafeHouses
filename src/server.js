@@ -2,15 +2,16 @@
 
 const express = require("express");
 const app = express();
+require("dotenv").config();
+
 const PORT = process.env.PORT || 5555;
 
 const authRouter = require("./routes/auth.routes");
 const v1Router = require("./routes/v1.route.");
-require("dotenv").config();
 
 const notFoundHandler = require("./error-handlers/404.js");
 const errorHandler = require("./error-handlers/500.js");
-// const logger = require('./models/logger.js');
+// const logger = require('./models/logger.js',,,);
 
 const cors = require("cors");
 const morgan = require("morgan");
