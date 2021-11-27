@@ -5,13 +5,25 @@ process.env.SECRET = "abcdefghijklmnopqrstuvwxyz";
 const supertest = require("supertest");
 const { app } = require("../src/server");
 const mockReq = supertest(app);
-
+const faker = require("faker");
+const { db } = require("../src/models/index");
+const acl = require("../src/middleware/acl");
+process.env.SECRET = "toes";
 const newUser = {
-  username: "test2244332",
-  password: "test244422",
-  Email: "test@114411",
+  username: faker.name.findName(),
+  password: faker.name.findName(),
+  Email: faker.name.findName(),
   role: "admin",
 };
+
+beforeAll(async () => {
+  await db.sync();
+});
+
+// // afterAll(async () => {
+// //   await db.drop();
+// // });
+
 describe("sign-up sign-in", () => {
   it("sign up", async () => {
     const res = await mockReq.post("/signup").send(newUser);

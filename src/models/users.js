@@ -7,7 +7,7 @@ const SECRET = process.env.SECRET || "secret-string";
 
 const userModel = (sequelize, DataTypes) => {
   const model = sequelize.define("users", {
-    username: { type: DataTypes.STRING, required: true, unique: true },
+    username: { type: DataTypes.STRING, required: true, unique: true },// we should add not allow null
     password: { type: DataTypes.STRING, required: true },
     Email: { type: DataTypes.STRING, required: true },
     role: {

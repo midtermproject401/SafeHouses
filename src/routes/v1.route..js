@@ -18,7 +18,7 @@ router.param("model", (req, res, next) => {
   }
 });
 
-router.get("/:model", bearer, acl("read"), handleGetAll);
+router.get("/:model", bearer,handleGetAll);
 router.get("/:model/:id", bearer, acl("read"), handleGetOne);
 router.post("/:model", bearer, acl("create"), handleCreate);
 router.put("/:model/:id", bearer, acl("update"), handleUpdate);
@@ -82,8 +82,10 @@ async function handleUpdateOwner(req, res) {
   const id = req.params.id;
   const obj = req.body;
   let reqOwnerName = req.params.ownerName;
+  console.log(req.user.dataValues)
 
   if (reqOwnerName === req.user.dataValues.username) {
+    console.log(req.user.dataValues.username)
     let updatedRecord = await req.model.update(id, obj);
     res.status(200).json(updatedRecord);
   } else {
@@ -104,10 +106,11 @@ async function handleDeleteOwner(req, res) {
 }
 // search location
 async function handleSearchLocation(req, res) {
-  const id = req.params.id;
+  const id = req.params.id;// why we should add an id here we can search in general
+  console.log(id)
   const location = req.params.location;
 
-  let theRecords = await req.model.get(id, location);
+  let theRecords = await req.model.get(id,location);
   res.status(200).json(theRecords);
 }
 
