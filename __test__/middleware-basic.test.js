@@ -14,7 +14,7 @@ const userInfo = {
 };
 
 
-// Pre-load our database with fake users
+// Pre-load our database with fake users::
 beforeAll(async () => {
   await db.sync();
   await users.create(userInfo);
