@@ -26,6 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(authRouter);
 app.use("/api/v1", v1Router);
 
+app.get("/erro", (req, res) => {
+  throw new Error("Error");
+});
 app.use("*", notFoundHandler);
 app.use(errorHandler);
 
