@@ -1,11 +1,12 @@
 "use strict";
+require("dotenv").config();
 
 const express = require("express");
 const app = express();
 require("dotenv").config();
 // const { users } = require("./models/users");
 
-const PORT = process.env.PORT || 5555;
+const PORT = process.env.PORT || 5648;
 
 const authRouter = require("./routes/auth.routes");
 const v1Router = require("./routes/v1.route.");
