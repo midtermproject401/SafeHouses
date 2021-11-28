@@ -47,5 +47,9 @@ authRouter.get("/chat.html",async (req, res, next) => {
   // res.render('../../public/chat.html')
   res.sendFile(path.join(__dirname, '../../public'));
 });
+// authRouter.get("/chat.html",bearerAuth,async (req, res, next) => {
+//   // res.render('../../public/chat.html')
+//   res.sendFile(path.join(__dirname, '../../public'));
+// });
 
 module.exports = authRouter;
