@@ -114,7 +114,7 @@ function start() {
   });
 }
 
-module.exports = {
+module.exports={
   start,
   app,
 };
