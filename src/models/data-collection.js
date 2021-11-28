@@ -5,11 +5,13 @@ class DataCollection {
     this.model = model;
   }
 
-  get(id, location) {
+  get(id, location, email) {
     if (id) {
       return this.model.findOne({ where: { id } });
     } else if (location) {
       return this.model.findAll({ where: { location } });
+    } else if (email) {
+      return this.model.findOne({ where: { Email: email } });
     } else {
       return this.model.findAll({});
     }
@@ -19,10 +21,16 @@ class DataCollection {
     return this.model.create(record);
   }
 
-  update(id, data) {
-    return this.model
-      .findOne({ where: { id } })
-      .then((record) => record.update(data));
+  update(id, data, email) {
+    if (id) {
+      return this.model
+        .findOne({ where: { id } })
+        .then((record) => record.update(data));
+    } else if (email) {
+      return this.model
+        .findOne({ where: { Email: email } })
+        .then((record) => record.update(data));
+    }
   }
 
   delete(id, ownerName) {
