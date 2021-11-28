@@ -8,6 +8,8 @@ const basicAuth = require("../middleware/basic.js");
 const bearerAuth = require("../middleware/bearer.js");
 const permissions = require("../middleware/acl.js");
 
+const path = require('path');
+
 authRouter.post("/signup", async (req, res, next) => {
   try {
     let userRecord = await users.create(req.body);
@@ -40,8 +42,10 @@ authRouter.get(
   }
 );
 
-// authRouter.get("/secret", bearerAuth, async (req, res, next) => {
-//   res.status(200).send("Welcome to the secret area");
-// });
+// let x=require('../../public/chat.html')
+authRouter.get("/chat.html",async (req, res, next) => {
+  // res.render('../../public/chat.html')
+  res.sendFile(path.join(__dirname, '../../public'));
+});
 
 module.exports = authRouter;
