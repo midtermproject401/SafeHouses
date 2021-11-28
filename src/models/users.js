@@ -29,8 +29,16 @@ const userModel = (sequelize, DataTypes) => {
       type: DataTypes.VIRTUAL,
       get() {
         const acl = {
-          client: ["read"],
-          owner: ["read", "create", "updateOwn", "deleteOwn"],
+          client: ["read", "readProfile", "updateProfile", "creatProfile"],
+          owner: [
+            "read",
+            "create",
+            "updateOwn",
+            "deleteOwn",
+            "readProfile",
+            "updateProfile",
+            "creatProfile",
+          ],
           admin: ["read", "create", "update", "delete"],
         };
         return acl[this.role];
@@ -57,7 +65,7 @@ const userModel = (sequelize, DataTypes) => {
       const user = await this.findOne({
         where: { username: parsedToken.username },
       });
-      console.log(user);
+      console.log("11111111111", user);
       if (user) {
         return user;
       }
