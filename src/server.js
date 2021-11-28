@@ -3,6 +3,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
+// const { users } = require("./models/users");
 
 const PORT = process.env.PORT || 5555;
 
@@ -27,11 +28,88 @@ app.use(express.urlencoded({ extended: true }));
 app.use(authRouter);
 app.use("/api/v1", v1Router);
 
-app.use("*", notFoundHandler);
+app.get("/erro", (req, res) => {
+  throw new Error("Error");
+});
+// app.use("*", notFoundHandler);
 app.use(errorHandler);
 
+//chat Part 
+/////////////////////////////////////////////////////////////////
+
+const path = require('path');
+const http = require('http');
+const socketio = require('socket.io');
+const formatMessage = require('../utils/messages');
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers
+} = require('../utils/users');
+const server = http.createServer(app);
+const io = socketio(server);
+
+// Set static folder
+app.use(express.static(path.join(__dirname, '../public')));
+
+const botName = 'SafeHouse Bot';
+
+// Run when client connects
+io.on('connection', socket => {
+  socket.on('joinRoom', ({ username, Advname }) => {
+    const user = userJoin(socket.id, username, Advname);
+
+    socket.join(user.Advname);
+
+    // Welcome current user
+    socket.emit('message', formatMessage(botName, 'Dont Send Any Money Before Purchese'));
+
+    // Broadcast when a user connects
+    socket.broadcast
+      .to(user.Advname)
+      .emit(
+        'message',
+        formatMessage(botName, `Welcome ${user.username}`)
+      );
+
+    // Send users and room info
+    io.to(user.Advname).emit('roomUsers', {
+      Advname: user.Advname,
+      users: getRoomUsers(user.Advname)
+    });
+  });
+
+  // Listen for chatMessage
+  socket.on('chatMessage', msg => {
+    const user = getCurrentUser(socket.id);
+    io.to(user.Advname).emit('message', formatMessage(user.username, msg));
+  });
+
+  // Runs when client disconnects
+  socket.on('disconnect', () => {
+    const user = userLeave(socket.id);
+
+    if (user) {
+      io.to(user.Advname).emit(
+        'message',
+        formatMessage(botName, `Bye Bye ${user.username}`)
+      );
+
+      // Send users and room info
+      io.to(user.Advname).emit('roomUsers', {
+        Advname: user.Advname,
+        users: getRoomUsers(user.Advname)
+      });
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////
+
+
 function start() {
-  app.listen(PORT, () => {
+ server.listen(PORT, () => {
     console.log(`Server on ${PORT}`);
   });
 }
