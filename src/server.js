@@ -53,7 +53,7 @@ const io = socketio(server);
 // Set static folder
 app.use(express.static(path.join(__dirname, '../public')));
 
-const botName = 'SafeHouse Bot';
+const botName = 'SafeHouse Bot    ';
 
 // Run when client connects
 io.on('connection', socket => {
