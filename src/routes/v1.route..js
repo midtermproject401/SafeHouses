@@ -45,6 +45,25 @@ router.get(
   acl("read"),
   handleSearchLocation
 );
+// Profile:
+router.post(
+  "/:model/:userName",
+  bearer,
+  acl("creatProfile"),
+  handleCreateProfile
+);
+router.get(
+  "/:model/user/:email",
+  bearer,
+  acl("readProfile"),
+  handleReadProfile
+);
+router.put(
+  "/:model/user/1/:email",
+  bearer,
+  acl("updateProfile"),
+  handleUpdateProfile
+);
 
 async function handleGetAll(req, res) {
   let allRecords = await req.model.get();
@@ -118,6 +137,44 @@ async function handleSearchLocation(req, res) {
 
   let theRecords = await req.model.get(id, location);
   res.status(200).json(theRecords);
+}
+
+// Profile:
+async function handleCreateProfile(req, res) {
+  const userName = req.params.userName;
+  const obj = req.body;
+
+  if (userName === req.user.dataValues.username) {
+    let creatProfile = await req.model.create(obj);
+    res.status(200).json(creatProfile);
+  } else {
+    res.status(500).json("You can only create your Profile");
+  }
+}
+
+async function handleReadProfile(req, res) {
+  const id = req.params.id;
+  const location = req.params.location;
+  const email = req.params.email;
+
+  if (email === req.user.dataValues.Email) {
+    let getProfile = await req.model.get(id, location, email);
+    res.status(200).json(getProfile);
+  } else {
+    res.status(500).json("You can only see your Profile");
+  }
+}
+
+async function handleUpdateProfile(req, res) {
+  const email = req.params.email;
+  const obj = req.body;
+  const id = req.params.id;
+  if (email === req.user.dataValues.Email) {
+    let updateProfile = await req.model.update(id, obj, email);
+    res.status(200).json(updateProfile);
+  } else {
+    res.status(500).json("You can only see your Profile");
+  }
 }
 
 module.exports = router;

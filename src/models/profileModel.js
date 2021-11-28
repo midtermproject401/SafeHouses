@@ -6,7 +6,7 @@ const profile = (sequelize, DataTypes) =>
     LastName: { type: DataTypes.STRING, allowNull: false },
     Email: { type: DataTypes.STRING, allowNull: false },
     age: { type: DataTypes.STRING },
-    phoneNumber: { type: DataTypes.INTEGER },
+    phoneNumber: { type: DataTypes.STRING },
   });
 
 module.exports = profile;
