@@ -112,7 +112,15 @@ a {
 .chat-messages .message .meta span {
 	color: rgb(43, 40, 24);
 }
+ h4 {
 
+	color: rgb(163 0 193 / 99%)
+
+}
+p{
+	color: rgb(215 0 89 / 99%);
+	font-weight: bold;
+}
 .chat-form-container {
 	padding: 20px 30px;
 	background-color:black;
