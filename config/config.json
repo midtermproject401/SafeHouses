@@ -2,7 +2,7 @@
   "development": {
     "username": "emadidris",
     "password": "password",
-    "database": "midProject3",
+    "database": "midProject",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

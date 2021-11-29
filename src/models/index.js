@@ -4,6 +4,7 @@ require("dotenv").config();
 const userModel = require("./users.js");
 const profileModel = require("../models/profileModel");
 const houseModel = require("../models/housesModel");
+const rentModel=require('./rent-orderModel')
 const Collection = require("../models/data-collection");
 
 const { Sequelize, DataTypes } = require("sequelize");
@@ -27,10 +28,13 @@ const sequelize = new Sequelize(DATABASE_URL, sequelizeOptions);
 
 const house = houseModel(sequelize, DataTypes);
 const profile = profileModel(sequelize, DataTypes);
+const rent=rentModel(sequelize, DataTypes);
 
 module.exports = {
   db: sequelize,
   users: userModel(sequelize, DataTypes),
   house: new Collection(house),
   profile: new Collection(profile),
+  rent: new Collection(rent)
 };
+
