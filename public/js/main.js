@@ -16,7 +16,7 @@ rent.addEventListener('click', (e) => {
  if (username.includes("(owner)"))
  {
   let msg1 ='plese check the House details and payment method in the below link';
-   let msg2 ='https://safe-houses.herokuapp.com/rent/21';
+   let msg2 =`https://safe-housy.herokuapp.com/rent/${Advname}`;
   msg1 = msg1.trim();
    if (!msg1) {
     return false;
