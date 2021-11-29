@@ -2,6 +2,7 @@ const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
+const rent = document.getElementById('rent');
 
 
 
@@ -9,6 +10,36 @@ const { username, Advname } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
+rent.addEventListener('click', (e) => {
+  e.preventDefault();
+
+ if (username.includes("(owner)"))
+ {
+  let msg1 ='plese check the House details and payment method in the below link';
+   let msg2 ='https://safe-houses.herokuapp.com/rent/21';
+  msg1 = msg1.trim();
+   if (!msg1) {
+    return false;
+  }
+  msg2 = msg2.trim();
+  if (!msg2) {
+   return false;
+ }
+  // Emit message to server
+  socket.emit('chatMessage', msg1);
+  socket.emit('chatMessage', msg2);
+  // Clear input
+  e.target.elements.msg1.value = '';
+  e.target.elements.msg1.focus();
+  e.target.elements.msg2.value = '';
+  e.target.elements.msg2.focus();
+}
+else {
+  alert("You Can't rent the house until agreement from the owner:) ")
+}
+}
+
+);
 const socket = io();
 
 // Join chatroom
