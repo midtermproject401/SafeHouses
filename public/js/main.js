@@ -16,7 +16,7 @@ rent.addEventListener('click', (e) => {
  if (username.includes("(owner)"))
  {
   let msg1 ='plese check the House details and payment method in the below link';
-   let msg2 ='https://safe-houses.herokuapp.com/rent/21';
+   let msg2 =`https://safe-housy.herokuapp.com/rent/${Advname}`;
   msg1 = msg1.trim();
    if (!msg1) {
     return false;
@@ -85,15 +85,28 @@ chatForm.addEventListener('submit', (e) => {
 function outputMessage(message) {
   const div = document.createElement('div');
   div.classList.add('message');
+  
   const p = document.createElement('p');
   p.classList.add('meta');
   p.innerText = message.username;
   p.innerHTML += `<span>${message.time}</span>`;
   div.appendChild(p);
-  const para = document.createElement('p');
+
+ if (message.username.includes("(owner)"))
+  {
+  const para = document.createElement('h4');
   para.classList.add('text');
   para.innerText = message.text;
   div.appendChild(para);
+  }
+  else{
+    const para = document.createElement('p');
+    para.classList.add('text');
+    para.innerText = message.text;
+    div.appendChild(para);
+
+  }
+
   document.querySelector('.chat-messages').appendChild(div);
 }
 
@@ -106,6 +119,7 @@ function outputRoomName(Advname) {
 function outputUsers(users) {
   userList.innerHTML = '';
   users.forEach((user) => {
+    
     const li = document.createElement('li');
     li.innerText = user.username;
     userList.appendChild(li);
