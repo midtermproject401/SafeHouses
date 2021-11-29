@@ -116,10 +116,14 @@ a {
 .chat-form-container {
 	padding: 20px 30px;
 	background-color:black;
+	width: 100%;
 }
 
 .chat-form-container form {
 	display: flex;
+	width: 80%;
+	margin-left: 22%;
+
 }
 
 .chat-form-container input[type='text'] {
