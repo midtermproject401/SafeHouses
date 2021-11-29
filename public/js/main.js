@@ -5,6 +5,7 @@ const userList = document.getElementById('users');
 
 
 
+
 const { username, Advname } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
