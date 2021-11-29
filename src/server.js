@@ -57,7 +57,7 @@ const io = socketio(server);
 // Set static folder
 app.use(express.static(path.join(__dirname, '../public')));
 
-const botName = 'SafeHouse Bot    ';
+const botName = 'SafeHouse';
 
 // Run when client connects
 io.on('connection', socket => {
@@ -68,13 +68,12 @@ io.on('connection', socket => {
 
     // Welcome current user
     socket.emit('message', formatMessage(botName, 'Dont Send Any Money Before Purchese'));
-
     // Broadcast when a user connects
     socket.broadcast
       .to(user.Advname)
       .emit(
         'message',
-        formatMessage(botName, `Welcome ${user.username}`)
+        formatMessage(botName, ` ${user.username}  view your Ads`)
       );
 
     // Send users and room info
@@ -97,7 +96,7 @@ io.on('connection', socket => {
     if (user) {
       io.to(user.Advname).emit(
         'message',
-        formatMessage(botName, `Bye Bye ${user.username}`)
+        formatMessage(botName, ` ${user.username} left`)
       );
 
       // Send users and room info
@@ -118,7 +117,7 @@ function start() {
   });
 }
 
-module.exports = {
+module.exports={
   start,
   app,
 };
