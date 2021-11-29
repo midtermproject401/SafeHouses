@@ -10,6 +10,10 @@ const house = (sequelize, DataTypes) =>
       required: true,
     },
     price: { type: DataTypes.STRING, allowNull: false },
+    state: {
+      type: DataTypes.ENUM("availabe", "rented"),
+      required: true,
+    },
     ownerName: { type: DataTypes.STRING, allowNull: false },
     phoneNumber: { type: DataTypes.STRING, allowNull: false },
   });
