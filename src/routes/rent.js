@@ -1,4 +1,4 @@
-"usr strict";
+"use strict";
 const express = require("express");
 const bearer = require("../middleware/bearer");
 const { rent } = require("../models");
@@ -15,6 +15,8 @@ async function getHouses(req, res, next) {
 }
 
 router.post("/rent/:id", bearer, getHouses, handleRent);
+router.get("/rent/:id", getOneHouses);
+
 
 async function handleRent(req, res) {
   const obj = req.body;
@@ -46,6 +48,12 @@ async function handleRent(req, res) {
       }
     }
   });
+}
+
+async function getOneHouses(req, res) {
+  const id = req.params.id;
+  const oneData = await house.get(id);
+  res.status(200).json(oneData);
 }
 
 module.exports = router;
