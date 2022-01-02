@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.post('/hotel', bearer,handleCreateHotels);
 router.get('/hotel', bearer,handleGetHotels)
-router.post('/hotel/rooms',bearer,handleCreateRooms);
-router.get('/hotel/rooms',bearer,handleGetRooms)
+router.post('/hotel/rooms',handleCreateRooms);
+router.get('/hotel/rooms',handleGetRooms)
 router.get('/hotel/:id/rooms',handleGetRooms)
 router.get('/hotel/rooms',handleGetRooms)
 
