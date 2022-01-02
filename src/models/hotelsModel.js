@@ -7,6 +7,8 @@ const hotel = (sequelize, DataTypes) =>
     facilities: { type: DataTypes.STRING, allowNull: false },
     activitiesAndEntertainments: { type: DataTypes.STRING, allowNull: false },
     Discription: { type: DataTypes.STRING, allowNull: false },
+    Location: { type: DataTypes.STRING, allowNull: false },
+    Rating:{type: DataTypes.STRING, allowNull: false}
   });
 
 module.exports = hotel;

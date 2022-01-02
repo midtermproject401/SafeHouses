@@ -7,10 +7,10 @@ const { room } = require("../models");
 
 const router = express.Router();
 
-router.post('/hotel',handleCreateHotels);
-router.get('/hotel',handleGetHotels)
-router.post('/hotel/rooms',handleCreateRooms);
-router.get('/hotel/rooms',handleGetRooms)
+router.post('/hotel', bearer,handleCreateHotels);
+router.get('/hotel', bearer,handleGetHotels)
+router.post('/hotel/rooms',bearer,handleCreateRooms);
+router.get('/hotel/rooms',bearer,handleGetRooms)
 
 async function handleCreateHotels(req,res){
     const obj=req.body;
