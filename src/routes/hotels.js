@@ -11,6 +11,10 @@ router.post('/hotel', bearer,handleCreateHotels);
 router.get('/hotel', bearer,handleGetHotels)
 router.post('/hotel/rooms',bearer,handleCreateRooms);
 router.get('/hotel/rooms',bearer,handleGetRooms)
+router.get('/hotel/:id/rooms',handleGetRooms)
+router.get('/hotel/rooms',handleGetRooms)
+
+
 
 async function handleCreateHotels(req,res){
     const obj=req.body;
