@@ -32,9 +32,10 @@ a {
 .btn {
 	cursor: pointer;
 	padding: 5px 15px;
-	background:gold;
-	color: black;
+	background:rgb(90, 90, 163);
+	color: white;
 	border: 0;
+	font-weight: bold;
 	font-size: 17px;
 }
 
@@ -48,8 +49,8 @@ a {
 }
 
 .chat-header {
-	background:black;
-	color: gold;
+	background:#394b59;
+	color: rgb(255, 255, 255);
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	padding: 15px;
@@ -66,8 +67,8 @@ a {
 }
 
 .chat-sidebar {
-	background:black;
-	color: gold;
+	background-color: #ede6db;
+	color: #0d6efd;
 	padding: 20px 20px 60px;
 	overflow-y: scroll;
 }
@@ -87,7 +88,10 @@ a {
 	padding: 10px 0;
 }
 
+
 .chat-messages {
+	background: var(--light-color);
+
 	padding: 30px;
 	max-height: 500px;
 	overflow-y: scroll;
@@ -123,7 +127,7 @@ p{
 }
 .chat-form-container {
 	padding: 20px 30px;
-	background-color:black;
+	background-color:#394b59;
 	width: 100%;
 }
 
