@@ -35,10 +35,10 @@ const hotel = hotelModel(sequelize, DataTypes);
 const room = roomModel(sequelize, DataTypes);
 const book = bookModel(sequelize, DataTypes);
 
-hotel.hasMany(room, { foreignKey: "hotelid", sourceKey: "id" });
-room.belongsTo(hotel, { foreignKey: "hotelid", targetKey: "id" });
-room.hasMany(book, { foreignKey: "roomId", sourceKey: "id" });
-book.belongsTo(room, { foreignKey: "roomId", targetKey: "id" });
+// hotel.hasMany(room, { foreignKey: "hotelid", sourceKey: "id" });
+// room.belongsTo(hotel, { foreignKey: "hotelid", targetKey: "id" });
+// room.hasMany(book, { foreignKey: "roomId", sourceKey: "id" });
+// book.belongsTo(room, { foreignKey: "roomId", targetKey: "id" });
 
 module.exports = {
   db: sequelize,
