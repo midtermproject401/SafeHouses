@@ -12,10 +12,9 @@ const { username, Advname } = Qs.parse(location.search, {
 
 rent.addEventListener('click', (e) => {
   e.preventDefault();
-  
 
-
-
+ if (username.includes("(owner)"))
+ {
   let msg1 ='plese check the House details and payment method in the below link';
    let msg2 =`https://safe-housy.herokuapp.com/rent/${Advname}`;
   msg1 = msg1.trim();
@@ -34,7 +33,10 @@ rent.addEventListener('click', (e) => {
   e.target.elements.msg1.focus();
   e.target.elements.msg2.value = '';
   e.target.elements.msg2.focus();
-
+}
+else {
+  alert("You Can't rent the house until agreement from the owner:) ")
+}
 }
 
 );
