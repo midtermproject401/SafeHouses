@@ -18,23 +18,23 @@ router.param("model", (req, res, next) => {
   }
 });
 
-router.get("/:model", acl("read"), handleGetAll);
-router.get("/:model/:id", acl("read"), handleGetOne);
-router.post("/:model", acl("create"), handleCreate);
-router.put("/:model/:id", acl("update"), handleUpdate);
-router.delete("/:model/:id", acl("delete"), handleDelete);
+router.get("/:model", handleGetAll);
+router.get("/:model/:id", handleGetOne);
+router.post("/:model", handleCreate);
+router.put("/:model/:id", handleUpdate);
+router.delete("/:model/:id", handleDelete);
 // Owners
 router.put(
   "/:model/:id/:ownerName",
 
-  acl("updateOwn"),
+  // acl("updateOwn"),
   handleUpdateOwner
 );
 
 router.delete(
   "/:model/:id/:ownerName",
 
-  acl("deleteOwn"),
+  // acl("deleteOwn"),
   handleDeleteOwner
 );
 
@@ -42,26 +42,26 @@ router.delete(
 router.get(
   "/:model/search/:location",
   bearer,
-  acl("read"),
+  // acl("read"),
   handleSearchLocation
 );
 // Profile:
 router.post(
   "/:model/:userName",
-  
-  acl("creatProfile"),
+
+  // acl("creatProfile"),
   handleCreateProfile
 );
 router.get(
   "/:model/user/:email",
- 
-  acl("readProfile"),
+
+  // acl("readProfile"),
   handleReadProfile
 );
 router.put(
   "/:model/user/1/:email",
 
-  acl("updateProfile"),
+  // acl("updateProfile"),
   handleUpdateProfile
 );
 
