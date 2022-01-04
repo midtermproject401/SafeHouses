@@ -7,12 +7,26 @@ const { room } = require("../models");
 
 const router = express.Router();
 
-router.post("/hotel", bearer, handleCreateHotels);
-router.get("/hotel", bearer, handleGetHotels);
+router.post("/hotel", handleCreateHotels);
+router.get("/hotel", handleGetHotels);
 router.get("/hotel/:id", handleGetOne);
-
+router.delete("/hotel/:id", handleDelete);
+router.put("/:model/:id", handleUpdate);
 router.post("/hotel/:id/rooms", handleCreateRooms);
 router.get("/hotel/:id/rooms", handleGetRooms);
+
+async function handleUpdate(req, res) {
+  const id = req.params.id;
+  const obj = req.body;
+  let updatedRecord = await hotel.update(id, obj);
+  res.status(200).json(updatedRecord);
+}
+
+async function handleDelete(req, res) {
+  let id = req.params.id;
+  let deletedRecord = await hotel.delete(id);
+  res.status(200).json(deletedRecord);
+}
 
 async function handleCreateHotels(req, res) {
   const obj = req.body;
@@ -26,7 +40,6 @@ async function handleGetHotels(req, res) {
 }
 async function handleGetOne(req, res) {
   const id = req.params.id;
-  console.log(id, "idddddddddddddddid");
   const allRecords = await hotel.get(id);
   res.status(200).json(allRecords);
 }

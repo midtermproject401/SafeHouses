@@ -18,22 +18,22 @@ router.param("model", (req, res, next) => {
   }
 });
 
-router.get("/:model", bearer, acl("read"), handleGetAll);
-router.get("/:model/:id", bearer, acl("read"), handleGetOne);
-router.post("/:model", bearer, acl("create"), handleCreate);
-router.put("/:model/:id", bearer, acl("update"), handleUpdate);
-router.delete("/:model/:id", bearer, acl("delete"), handleDelete);
+router.get("/:model", acl("read"), handleGetAll);
+router.get("/:model/:id", acl("read"), handleGetOne);
+router.post("/:model", acl("create"), handleCreate);
+router.put("/:model/:id", acl("update"), handleUpdate);
+router.delete("/:model/:id", acl("delete"), handleDelete);
 // Owners
 router.put(
   "/:model/:id/:ownerName",
-  bearer,
+
   acl("updateOwn"),
   handleUpdateOwner
 );
 
 router.delete(
   "/:model/:id/:ownerName",
-  bearer,
+
   acl("deleteOwn"),
   handleDeleteOwner
 );
@@ -48,19 +48,19 @@ router.get(
 // Profile:
 router.post(
   "/:model/:userName",
-  bearer,
+  
   acl("creatProfile"),
   handleCreateProfile
 );
 router.get(
   "/:model/user/:email",
-  bearer,
+ 
   acl("readProfile"),
   handleReadProfile
 );
 router.put(
   "/:model/user/1/:email",
-  bearer,
+
   acl("updateProfile"),
   handleUpdateProfile
 );
