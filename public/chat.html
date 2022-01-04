@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
     integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+
+  <link rel="stylesheet" href="./x.css">
   <link rel="stylesheet" href="css/style.css" />
   <title>SafeHouse App</title>
 </head>
@@ -13,17 +17,65 @@
 <body>
   <div class="chat-container">
     <header class="chat-header">
-      <h1> Ad Number: <h2 id="room-name"></h2>
+      <img src="./css/safehouselogo.png" width="10%" height="7%" alt="logo"/>
+      <h1 style="text-align: center;">  <h2 id="room-name"></h2>
       </h1>
-      <a id="leave-btn" class="btn">Close Chat </a>
+      <div class="col-lg-6 hidden-sm text-right">
+        <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+        <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+        <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+        <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+    </div>
+      
     </header>
     <main class="chat-main">
       <div class="chat-sidebar">
         <!-- <h3><i class="fas fa-comments"></i> House No:</h3>
           <h2 id="room-name"></h2> -->
-        <h3>Client and Owner</h3>
+        <!-- <h4 style="text-decoration: underline;">Member</h4> -->
+        <input type="text" class="form-control" placeholder="Search...">
+        <hr style="font-weight: bold;">
         <ul id="users"></ul>
-        <button id="rent" class="btn"><i class="fas fa-paper-plane"></i> rent</button>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              
+              <div class="page">
+                <button onmouseover="this.style.color ='#000'" onmouseout="this.style.color ='#fff'" type="button" style="cursor: pointer;
+                padding: 5px 15px;
+                background: #0A7CFF;
+                color: #fff;
+                margin-left:50px ;
+                border: 0;
+                cursor: pointer;
+                font-size: 17px; border-radius: 5px;" id="rent" class="modalButton" data-toggle="modal" data-src="./cash.html"
+                  data-width="500" data-height="281" data-target="#myModal" data-video-fullscreen="">Payment</button>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                ​
+                <div class="modal-body">
+
+                  <div class="close-button">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" frameborder="0"></iframe>
+                  </div>
+                </div>
+                ​
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+        </footer>
 
       </div>
 
@@ -39,6 +91,9 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
     integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4=" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+  <script src="./x.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/main.js"></script>
 </body>

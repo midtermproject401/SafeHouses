@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&family=Indie+Flower&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:wght@100&display=swap');
+
 :root {
 	--dark-color-a: #667aff;
 	--dark-color-b: #7386ff;
@@ -19,17 +17,12 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	background:#fff;
+	background: var(--light-color);
 	margin: 20px;
 }
 
 ul {
 	list-style: none;
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    font-size: 30px;
-	font-family: 'Fira Sans', sans-serif;
 }
 
 a {
@@ -39,14 +32,12 @@ a {
 .btn {
 	cursor: pointer;
 	padding: 5px 15px;
-	background:#0A7CFF;
-	color: #fff;
+	background:gold;
+	color: black;
 	border: 0;
 	font-size: 17px;
 }
-.bg-custom-1 {
-	background-color: #85144B;
-  }
+
 /* Chat Page */
 
 .chat-container {
@@ -57,8 +48,8 @@ a {
 }
 
 .chat-header {
-	background:#fff;
-	color: #212529;
+	background:black;
+	color: gold;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	padding: 15px;
@@ -67,12 +58,8 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border: #ced4da 1px solid;
+}
 
-}
-#room-name
-{font-family: 'Bebas Neue', cursive; margin-left: 35%;
-}
 .chat-main {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
@@ -80,10 +67,9 @@ a {
 
 .chat-sidebar {
 	background:#fff;
-	color: #212529;
+	color: gold;
 	padding: 20px 20px 60px;
-	overflow-x: scroll;
-	border: #ced4da 1px solid;
+	overflow-y: scroll;
 }
 
 .chat-sidebar h2 {
@@ -105,13 +91,12 @@ a {
 	padding: 30px;
 	max-height: 500px;
 	overflow-y: scroll;
-	/* border: #212529 1px solid; */
 }
 
 .chat-messages .message {
 	padding: 10px;
 	margin-bottom: 15px;
-	background-color: #efefef;
+	background-color: var(--light-color);
 	border-radius: 5px;
 	overflow-wrap: break-word;
 }
@@ -133,14 +118,12 @@ a {
 
 }
 p{
-	color: #444444;
+	color: rgb(215 0 89 / 99%);
 	font-weight: bold;
-	font-family: 'Indie Flower', cursive;
 }
 .chat-form-container {
 	padding: 20px 30px;
-	background-color:#fff;
-	border: #ced4da 2px solid;
+	background-color:black;
 	width: 100%;
 }
 
