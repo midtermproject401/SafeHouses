@@ -8,6 +8,8 @@ const rentModel = require("./rent-orderModel");
 const hotelModel = require("./hotelsModel");
 const roomModel = require("./roomModel");
 const bookModel = require("./booking-hotel");
+const likedPhotos = require("../models/likedPhotos");
+
 const Collection = require("../models/data-collection");
 
 const { Sequelize, DataTypes } = require("sequelize");
@@ -34,6 +36,8 @@ const rent = rentModel(sequelize, DataTypes);
 const hotel = hotelModel(sequelize, DataTypes);
 const room = roomModel(sequelize, DataTypes);
 const book = bookModel(sequelize, DataTypes);
+const liked = likedPhotos(sequelize, DataTypes);
+
 
 // hotel.hasMany(room, { foreignKey: "hotelid", sourceKey: "id" });
 // room.belongsTo(hotel, { foreignKey: "hotelid", targetKey: "id" });
@@ -49,4 +53,6 @@ module.exports = {
   hotel: new Collection(hotel),
   room: new Collection(room),
   book: new Collection(book),
+  liked: new Collection(liked),
+
 };
