@@ -2,6 +2,8 @@
 require("dotenv").config();
 
 const userModel = require("./users.js");
+const likedPhotos = require("../models/likedPhotos");
+
 const profileModel = require("../models/profileModel");
 const houseModel = require("../models/housesModel");
 const Collection = require("../models/data-collection");
@@ -26,6 +28,8 @@ let sequelizeOptions =
 const sequelize = new Sequelize(DATABASE_URL, sequelizeOptions);
 
 const house = houseModel(sequelize, DataTypes);
+const liked = likedPhotos(sequelize, DataTypes);
+
 const profile = profileModel(sequelize, DataTypes);
 
 module.exports = {
@@ -33,4 +37,6 @@ module.exports = {
   users: userModel(sequelize, DataTypes),
   house: new Collection(house),
   profile: new Collection(profile),
+  liked: new Collection(liked),
+
 };

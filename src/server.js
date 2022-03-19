@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 5555;
 
 const authRouter = require("./routes/auth.routes");
 const v1Router = require("./routes/v1.route.");
+const V2Router = require("./routes/v2.route");
+
 
 const notFoundHandler = require("./error-handlers/404.js");
 const errorHandler = require("./error-handlers/500.js");
@@ -26,6 +28,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(authRouter);
 app.use("/api/v1", v1Router);
+app.use("/api/v2", V2Router);
+
+
 
 app.use("*", notFoundHandler);
 app.use(errorHandler);
