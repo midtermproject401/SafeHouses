@@ -10,11 +10,6 @@ const userModel = (sequelize, DataTypes) => {
     username: { type: DataTypes.STRING, required: true, unique: true },
     password: { type: DataTypes.STRING, required: true },
     Email: { type: DataTypes.STRING, required: true },
-    role: {
-      type: DataTypes.ENUM("client", "owner", "admin"),
-      required: true,
-      defaultValue: "client",
-    },
     token: {
       type: DataTypes.VIRTUAL,
       get() {
@@ -25,26 +20,7 @@ const userModel = (sequelize, DataTypes) => {
         return token;
       },
     },
-    capabilities: {
-      type: DataTypes.VIRTUAL,
-      get() {
-        const acl = {
-          client: ["read", "readProfile", "updateProfile", "creatProfile"],
-          owner: [
-            "read",
-            "create",
-            "updateOwn",
-            "deleteOwn",
-            "readProfile",
-            "updateProfile",
-            "creatProfile",
-          ],
-          admin: ["read", "create", "update", "delete"],
-        };
-        return acl[this.role];
-      },
-    },
-  });
+      });
   model.beforeCreate(async (user) => {
     let hashedPass = await bcrypt.hash(user.password, 10);
     user.password = hashedPass;
